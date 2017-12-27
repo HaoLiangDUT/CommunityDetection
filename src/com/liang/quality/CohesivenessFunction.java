@@ -158,7 +158,7 @@ public class CohesivenessFunction implements QualityFunction {
 		double upperbound = (1-Math.pow(q1,m_out+1))/(1-q1);
 		result = result*upperbound;
 		System.out.println("item1 = " + item1 + " item2 = " +item2 + " item3 = " + item3 + "  upper = " + upperbound );
-		System.out.println("calculate = "  + result);
+		System.out.println("calculate = "  + (item1+item2-item3+Math.log(upperbound)));
 		return item1+item2-item3+Math.log(upperbound);
 	}
 
