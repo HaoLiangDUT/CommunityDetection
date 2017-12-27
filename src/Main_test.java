@@ -8,19 +8,18 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
 
-;
 
 public class Main_test {
 
 	public static void main(String[] args){
 		// TODO Auto-generated method stub
 		Graph graph = new Graph(false);
-		File file = new File("./datasets/unweighted_collins2007.txt");
+		File file = new File("./datasets/football.txt");
 		BufferedReader reader = null;
 		 try {
-			    HashMap<String , Integer> map = new HashMap<String , Integer>();
+			    HashMap<String , Integer> map = new HashMap<>();
 	            reader = new BufferedReader(new FileReader(file));
-	            String tempString = null;
+	            String tempString ;
 	            while ((tempString = reader.readLine()) != null) {
 	            	String str[] = tempString.split("\\s+");
 	            	if(!map.containsKey(str[0])){
@@ -40,6 +39,9 @@ public class Main_test {
 	    		graph.compute_total_degree(d);
 
 			 MYMethod myMethod = new MYMethod(graph);myMethod.runONGraph();
+			 System.out.println();
+			 System.out.println(myMethod.hypothesisCount);
+			 System.out.println(Math.log(0.001/myMethod.hypothesisCount));
 //			 CohesivenessFunction cohesivenessFunction = new CohesivenessFunction();
 //			 System.out.println("asdasd " + cohesivenessFunction.logHyperProbability(78,41,6555,613));
 //			 System.out.println("asdasd " + cohesivenessFunction.logHyperProbability(78,50,6555,613));

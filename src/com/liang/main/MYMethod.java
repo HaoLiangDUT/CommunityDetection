@@ -14,6 +14,7 @@ import java.util.*;
  */
 public class MYMethod {
 
+    public static int hypothesisCount = 0;
     private Graph graph;
     private Map<Integer,Integer> hashMapDegree;
     private int count;
@@ -263,11 +264,12 @@ public class MYMethod {
             double pvalueAdd = qualityFunction.getAdditionAffinity(nodeSet,node);
            // System.out.println("pvalueAdd = " + pvalueAdd + "  node = " + node);
             //if(pvalueAdd < bestPvalue && pvalueAdd!=0 &&( -Math.log(pvalueAdd) - -Math.log(bestPvalue) > 6))
-            if(pvalueAdd < bestPvalue && (lastPvalue-pvalueAdd) > 0)
+            if(pvalueAdd < bestPvalue && (lastPvalue-pvalueAdd) > 12)
             {
                 bestPvalue = pvalueAdd;
                 addORdelNode = node;
             }
+            hypothesisCount++;
         }
 
         // 在nodeSet中的所有节点找到删除一个节点使得pvalue最小的节点
@@ -283,14 +285,12 @@ public class MYMethod {
                 addORdelNode = node;
                 isAddBest = false;
             }
+            hypothesisCount++;
         }
 
-       // if(count == 10) {
             System.out.println("bestPvalue = " + bestPvalue);
-            //System.out.println("bestPvalueLog = " + -Math.log(bestPvalue));
             System.out.println("addORdel = " + addORdelNode);
             System.out.println("isAddBest = " + isAddBest);
-      //  }
 
         //  如果这一回合没有加点也没有删点的话，返回结果集。如果不是的递归加点之后的集合或者删点之后的集合
         if(addORdelNode == -1)
